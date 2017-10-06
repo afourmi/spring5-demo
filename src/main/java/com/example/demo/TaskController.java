@@ -6,6 +6,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,11 +80,11 @@ public class TaskController {
     }
 
     @RequestMapping(path = "/taskBlocking", method = RequestMethod.POST)
-    public Flux<Task> createTaskBlocking(@RequestBody List<Task> tasks) {
-        return taskRepository.saveAll(tasks).map(task1 -> {
-            producer.send(Mono.just(task1));
-            return task1;
-        });
+    public Iterable<Task> createTaskBlocking(@RequestBody List<Task> tasks) {
+        return taskRepository.saveAll(tasks).map(task -> {
+            producer.send(Mono.just(task));
+            return task;
+        }).collectList().block();
     }
 
     @RequestMapping(path = "events", method = RequestMethod.GET, produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -104,6 +105,11 @@ class Task {
 
     public Task() {
 
+    }
+
+    public Task(String state, Map<String, Object> record) {
+        this.state = state;
+        this.record = record;
     }
 
     public String getId() {
@@ -128,5 +134,9 @@ class Task {
 
     public void setRecord(Map<String, Object> record) {
         this.record = record;
+    }
+
+    public String toString() {
+        return "Task[id=" + id + " , state=" + state + ", record=" + record + "]";
     }
 }

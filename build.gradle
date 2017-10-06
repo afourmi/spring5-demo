@@ -37,14 +37,18 @@ configurations {
 }
 
 dependencies {
-	compile('org.springframework.cloud:spring-cloud-stream-binder-kafka')
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
 	compile('org.springframework.boot:spring-boot-starter-webflux')
-
 	compile('org.springframework.boot:spring-boot-starter-reactor-netty')
+
+	// embedded mongodb
 	compile group: 'io.projectreactor.kafka', name: 'reactor-kafka', version: '1.0.0.RELEASE'
+	compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0')
+	compile('org.mongodb:mongodb-driver-reactivestreams:1.5.0')
+
+	// test
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('io.projectreactor:reactor-test')
+//	testCompile('io.projectreactor:reactor-test')
 }
 
 dependencyManagement {
