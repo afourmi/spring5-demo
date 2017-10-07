@@ -6,7 +6,6 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;

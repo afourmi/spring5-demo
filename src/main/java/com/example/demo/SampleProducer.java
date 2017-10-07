@@ -49,13 +49,6 @@ public class SampleProducer {
         sender = KafkaSender.create(senderOptions);
     }
 
-//    public void sendMessages(Task task) {
-//        ProducerRecord<String, Task> kvProducerRecord = new ProducerRecord<>(TOPIC, task);
-//        SenderRecord<String, Task, String> senderRecord = SenderRecord.create(kvProducerRecord, task.getId());
-//        sender.send(Mono.just(senderRecord))
-//                .doOnError(throwable -> log.error("Send failed", throwable))
-//                .doOnNext(result -> log.info("message send " + result.correlationMetadata())).subscribe();
-//    }
 
     public Disposable send(Mono<Task> mono) {
         return sender.send(mono.map(task -> SenderRecord.create(new ProducerRecord<>(TOPIC, task), task)))
