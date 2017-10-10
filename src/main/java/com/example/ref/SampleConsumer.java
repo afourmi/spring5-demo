@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.ref;
 
+import com.example.demo.Task;
+import com.example.demo.TaskDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;

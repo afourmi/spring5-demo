@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.ref;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
@@ -6,15 +6,13 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
+import com.example.demo.Task;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
@@ -121,50 +119,3 @@ class TaskService {
     }
 }
 
-@Document
-class Task {
-
-    @Id
-    private String id;
-
-    private String state;
-
-    private Map<String, Object> record;
-
-    public Task() {
-
-    }
-
-    public Task(String state, Map<String, Object> record) {
-        this.state = state;
-        this.record = record;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public Map<String, Object> getRecord() {
-        return record;
-    }
-
-    public void setRecord(Map<String, Object> record) {
-        this.record = record;
-    }
-
-    public String toString() {
-        return "Task[id=" + id + " , state=" + state + ", record=" + record + "]";
-    }
-}

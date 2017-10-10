@@ -1,16 +1,18 @@
 package com.example.demo;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
+
 import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.Serializer;
 
-import java.util.Map;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Created by aurelien on 10/1/17.
  */
-public class TaskSerializer implements Serializer<Task>{
+public class TaskSerializer implements Serializer<Task> {
+
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
 

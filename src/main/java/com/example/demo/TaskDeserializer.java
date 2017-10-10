@@ -1,16 +1,18 @@
 package com.example.demo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.Map;
+
 import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.Deserializer;
 
-import java.io.IOException;
-import java.util.Map;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Created by aurelien on 10/1/17.
  */
-public class TaskDeserializer implements Deserializer<Task>{
+public class TaskDeserializer implements Deserializer<Task> {
+
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
 

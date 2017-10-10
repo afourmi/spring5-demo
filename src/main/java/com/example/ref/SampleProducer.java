@@ -1,8 +1,10 @@
-package com.example.demo;
+package com.example.ref;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.demo.Task;
+import com.example.demo.TaskSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -10,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import reactor.core.Disposable;
 import reactor.core.publisher.Mono;
 import reactor.kafka.sender.KafkaSender;
 import reactor.kafka.sender.SenderOptions;
